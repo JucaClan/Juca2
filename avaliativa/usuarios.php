@@ -150,7 +150,7 @@ $usuarios = array(
                     <td><?=$usuario['nome_completo'];?></td>
                     <td><?=$usuario['email'];?></td>
                     <td><img src=<?=$usuario['foto'];?> alt="Foto do usuário username"></td>
-                    <td><?=$tipos[$usuario['id_tipo']];?></td>
+                    <td><?=$tipos[$usuario['id_tipo']-1];?></td>
                 </tr>
                 <?php  } ?>
                
