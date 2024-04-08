@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Resultado</title>
 </head>
+
 <body>
-<?php  if ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
-    <h3>Olá, <?=$_POST['Nome']?></h3>
-    <h3>Sua senha é:<?=$_POST['senha']?></h3>
-    <?php } else{ ?>
-        <h2>Erro! A página não foi carregada por POST!</h2>
-    <?php } ?>
+    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST') {  ?>
+        <h1>Formulário Enviado!</h1>
+        <p>Olá, <?= $_POST['nome'] ?></p>
+        <p>Seu e-mail é <?= $_POST['email'] ?></p>
+        <?php setcookie("visitou", 1); ?>
+    <?php } else {
+
+        header('Location: index.php');
+    }
+    ?>
+
 </body>
+
 </html>
