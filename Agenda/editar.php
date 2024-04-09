@@ -1,16 +1,19 @@
 <?php
+
 if (!isset($_GET['id'])) {
-    //REDIRECIONAR
-    header('Location/ ../index.php');
+    // Redirecionar: 
+    header('Location: index.php');
 } else {
-    require_once('classes/Contato.class.php');
+    require_once("actions/classes/Contato.class.php");
     $contato = new Contato();
     $contato->id = $_GET['id'];
     $dados = $contato->ListarPorID()[0];
 }
 
 
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,19 +29,20 @@ if (!isset($_GET['id'])) {
 <body>
     <div class="container">
         <h1>Formulário de Edição</h1>
-        <form>
+        <form action="actions/editar_contato.php" method="post">
             <div class="form-group">
-                <label for="nome" value="<?= $dados['nome'] ?>">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome">
+                <label for="nome">Nome:</label>
+                <input type="text" value="<?= $dados['nome'] ?>" class="form-control" id="nome" name="nome">
             </div>
             <div class="form-group">
-                <label for="email" value="<?= $dados['email'] ?>">E-mail:</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <label for="email">E-mail:</label>
+                <input type="email" value="<?= $dados['email'] ?>" class="form-control" id="email" name="email">
             </div>
             <div class="form-group">
-                <label for="telefone" value="<?= $dados['telefone'] ?>">Telefone:</label>
-                <input type="tel" class="form-control" id="telefone" name="telefone">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" value="<?= $dados['telefone'] ?>" class="form-control" id="telefone" name="telefone">
             </div>
+            <input type="hidden" id="id" name="id" value="<?= $dados['id'] ?>">
             <button type="submit" class="btn btn-primary">Editar</button>
         </form>
     </div>

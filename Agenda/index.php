@@ -77,7 +77,7 @@ $tabela = $contato->Listar();
             <td><?= $linha['nome']; ?></td>
             <td><?= $linha['email']; ?></td>
             <td><?= $linha['telefone']; ?></td>
-            <td><a href="actions/editar_contato.php?id=<?= $linha['id']; ?>">Editar</a> | <a href="actions/apagar_contato.php?id=<?= $linha['id']; ?>">Excluir</a></td>
+            <td><a href="editar.php?id=<?= $linha['id']; ?>">Editar</a> | <a href="actions/apagar_contato.php?id=<?= $linha['id']; ?>">Excluir</a></td>
           </tr>
         <?php } ?>
         <!-- Repita esse formato para cada contato cadastrado -->

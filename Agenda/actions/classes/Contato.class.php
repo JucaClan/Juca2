@@ -53,7 +53,12 @@ class Contato
         Banco::desconectar();
         return $comando->rowCount();
     }
-    public function Editar()
-    {
+    public function Editar(){
+        $sql = "UPDATE contatos SET nome=?, email=?, telefone=? WHERE id=?";
+        $banco = Banco::conectar();
+        $comando = $banco->prepare($sql);
+        $comando->execute([$this->nome, $this->email, $this->telefone, $this->id]);
+        Banco::desconectar();
+        return $comando->rowCount();
     }
 }
