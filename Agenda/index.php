@@ -1,8 +1,32 @@
+<?php
+// Arrays de mensagens de erro/sucesso:
+$sucesso = [
+  "Contato cadastrado com sucesso!",
+  "Contato removido com sucesso!",
+  "Contato editado com sucesso!"
+];
+$falha = [
+  "Falha ao cadastrar contato!",
+  "Falha ao remover contato!",
+  "Falha ao modificar contato!"
+];
+
+require_once('actions/classes/Contato.class.php');
+
+$contato = new Contato();
+
+$tabela = $contato->Listar();
+
+
+?>
+
 <html>
+
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Cadastro de Contatos</title>
 </head>
+
 <body>
   <div class="container">
     <h1>Cadastro de contatos</h1>
@@ -16,7 +40,24 @@
       <br>
       <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
- 
+
+    <?php if (isset($_GET['sucesso']) || isset($_GET['falha'])) {
+      if (isset($_GET['sucesso'])) { ?>
+
+        <div class="alert alert-success" role="alert">
+          <?=$sucesso[ $_GET['sucesso'] ]; ?>
+        </div>
+
+      <?php } else { ?>
+
+        <div class="alert alert-danger" role="alert">
+        <?=$falha[ $_GET['falha'] ]; ?>
+        </div>
+
+    <?php }
+    } ?>
+
+
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -27,28 +68,30 @@
         </tr>
       </thead>
       <tbody>
- 
+
         <!-- Insira aqui as linhas da tabela com os dados dos contatos -->
- 
+
         <!-- Exemplo de linha da tabela com um contato fictício -->
-        <tr>
-          <td>Maria Silva</td>
-          <td>maria@gmail.com</td>
-          <td>(11) 99999-9999</td>
-          <td><a href="#">Editar</a> | <a href="#">Excluir</a></td>
-        </tr>
- 
+        <?php foreach ($tabela as $linha) { ?>
+          <tr>
+            <td><?= $linha['nome']; ?></td>
+            <td><?= $linha['email']; ?></td>
+            <td><?= $linha['telefone']; ?></td>
+            <td><a href="actions/editar_contato.php?id=<?= $linha['id']; ?>">Editar</a> | <a href="actions/apagar_contato.php?id=<?= $linha['id']; ?>">Excluir</a></td>
+          </tr>
+        <?php } ?>
         <!-- Repita esse formato para cada contato cadastrado -->
- 
+
       </tbody>
- 
+
     </table>
- 
+
   </div>
- 
- 
-  <script src = "https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

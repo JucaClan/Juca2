@@ -1,9 +1,11 @@
 <?php
 
+
 // Importar o Banco.class.php:
 require_once('Banco.class.php');
 
-class Contato{
+class Contato
+{
     // Atributos:
     public $id;
     public $nome;
@@ -11,7 +13,8 @@ class Contato{
     public $telefone;
 
     // Métodos:
-    public function Cadastrar(){
+    public function Cadastrar()
+    {
         $sql = "INSERT INTO contatos(nome, email, telefone) 
         VALUES (?, ?, ?)";
         $banco = Banco::conectar();
@@ -20,12 +23,24 @@ class Contato{
         Banco::desconectar();
         return $comando->rowCount();
     }
-    public function Listar(){
+    public function Listar()
+    {
         $sql = "SELECT * FROM contatos";
         $banco = Banco::conectar();
         $comando = $banco->prepare($sql);
         $comando->execute();
-        
+
+        $arr_resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
+        Banco::desconectar();
+        return $arr_resultado;
+    }
+
+    public function ListarPorID()
+    {
+        $sql = "SELECT * FROM contatos WHERE id = ?";
+        $banco = Banco::conectar();
+        $comando = $banco->prepare($sql);
+        $comando->execute([$this->id]);
         $arr_resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
         Banco::desconectar();
         return $arr_resultado;
@@ -38,9 +53,7 @@ class Contato{
         Banco::desconectar();
         return $comando->rowCount();
     }
-    public function Editar(){
-
+    public function Editar()
+    {
     }
 }
-
-?>
