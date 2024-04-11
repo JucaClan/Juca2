@@ -1,4 +1,12 @@
 <?php
+
+//VERIFICAR SE A SEÇÃO NÃO EXISTE:
+if(!isset($_SESSION["usuario"])) {
+  //VOLTAR AO LOGIN:
+  header("Location: login.php");
+  die();
+}
+
 // Arrays de mensagens de erro/sucesso:
 $sucesso = [
   "Contato cadastrado com sucesso!",

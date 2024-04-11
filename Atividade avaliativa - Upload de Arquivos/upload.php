@@ -20,8 +20,8 @@ move_uploaded_file( $arquivo_tmp, $destino  );
     echo 'tamanho: ' , $_FILES[ 'arquivo' ][ 'size' ]  ,'<br>';
 
     header "<img
-    src="https://developer.mozilla.org/static/img/favicon144.png"
-    alt="MDN logo" />
+    src="$destino"
+    alt="imagem recebida" />
 ?>
    
     
