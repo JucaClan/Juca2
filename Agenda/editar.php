@@ -1,4 +1,10 @@
 <?php
+// Verificar se a sessão não existe:
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        echo "Você não está logado!";
+        die();
+    }
 
 if (!isset($_GET['id'])) {
     // Redirecionar: 

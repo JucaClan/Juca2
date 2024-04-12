@@ -1,33 +1,35 @@
 <?php
 
 session_start();
-//VERIFICAR SE A SEÇÃO NÃO EXISTE:
-if(!isset($_SESSION["usuario"])) {
-  //VOLTAR AO LOGIN:
-  header("Location: login.php");
-  die();
-}
+// Verificar se a sessão não existe:
+  if(!isset($_SESSION['usuario'])){
+    // Voltar ao login:
+    header('Location: login.php');
+    die();
+  }
+
 
 // Arrays de mensagens de erro/sucesso:
 $sucesso = [
   "Contato cadastrado com sucesso!",
-  "Contato removido com sucesso!",
-  "Contato editado com sucesso!"
+  "Contato removido!",
+  "Contato modificado!"
 ];
-$falha = [
-  "Falha ao cadastrar contato!",
-  "Falha ao remover contato!",
-  "Falha ao modificar contato!"
+$falhas = [
+  "Falha ao cadastrar!",
+  "Falha ao remover!",
+  "Falha ao modificar!"
 ];
+
 
 require_once('actions/classes/Contato.class.php');
 
 $contato = new Contato();
-
 $tabela = $contato->Listar();
 
 
 ?>
+
 
 <html>
 
@@ -38,7 +40,7 @@ $tabela = $contato->Listar();
 
 <body>
   <div class="container">
-  <h4>Olá <?=$_SESSION['usuario']['nome']?></h4>
+    <h3>Olá, <?=$_SESSION['usuario']['nome']?>!</h3>
     <h1>Cadastro de contatos</h1>
     <form class="form-group" action="actions/cadastrar_contato.php" method="POST">
       <label for="nome">Nome completo:</label>
@@ -61,12 +63,11 @@ $tabela = $contato->Listar();
       <?php } else { ?>
 
         <div class="alert alert-danger" role="alert">
-        <?=$falha[ $_GET['falha'] ]; ?>
+           <?=$falhas[ $_GET['falha'] ]; ?>
         </div>
 
     <?php }
     } ?>
-
 
     <table class="table">
       <thead class="thead-dark">
@@ -82,7 +83,7 @@ $tabela = $contato->Listar();
         <!-- Insira aqui as linhas da tabela com os dados dos contatos -->
 
         <!-- Exemplo de linha da tabela com um contato fictício -->
-        <?php foreach ($tabela as $linha) { ?>
+        <?php foreach ($tabela as $linha) {  ?>
           <tr>
             <td><?= $linha['nome']; ?></td>
             <td><?= $linha['email']; ?></td>
