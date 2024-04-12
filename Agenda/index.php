@@ -40,7 +40,7 @@ $tabela = $contato->Listar();
 
 <body>
   <div class="container">
-    <h3>Olá, <?=$_SESSION['usuario']['nome']?>!</h3>
+    <h3>Olá, <?=$_SESSION['usuario']['nome']?>! <a href="sair.php" class="btn btn-danger my-4">Sair</a></h3>
     <h1>Cadastro de contatos</h1>
     <form class="form-group" action="actions/cadastrar_contato.php" method="POST">
       <label for="nome">Nome completo:</label>

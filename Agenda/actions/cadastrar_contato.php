@@ -12,9 +12,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     require_once('classes/Contato.class.php');
 
     $contato = new Contato();
-    $contato->nome = $_POST['nome'];
-    $contato->email = $_POST['email'];
-    $contato->telefone = $_POST['telefone'];
+    $contato->nome = strip_tags($_POST['nome']);
+    $contato->email = strip_tags($_POST['email']);
+    $contato->telefone = strip_tags($_POST['telefone']);
     if($contato->Cadastrar() == 1){
         // Redirecionar de volta ao index.php:
         header('Location: ../index.php?sucesso=0');
