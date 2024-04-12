@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 //VERIFICAR SE A SEÇÃO NÃO EXISTE:
 if(!isset($_SESSION["usuario"])) {
   //VOLTAR AO LOGIN:
@@ -37,6 +38,7 @@ $tabela = $contato->Listar();
 
 <body>
   <div class="container">
+  <h4>Olá <?=$_SESSION['usuario']['nome']?></h4>
     <h1>Cadastro de contatos</h1>
     <form class="form-group" action="actions/cadastrar_contato.php" method="POST">
       <label for="nome">Nome completo:</label>

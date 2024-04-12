@@ -1,20 +1,19 @@
 <?php
 
 // Verificar se a página foi carregada por POST:
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        // Verificar se o e-mail e a senha estão corretos:
-            if($_POST['email'] == 'admin@admin.com' && $_POST['senha'] == 'admin'){
-                echo "Show, acertou a senha!";
-                
-                // Iniciar a sessão:
-                session_start();
-                // Criar a sessão:
-                $_SESSION['usuario'] = ['nome' => 'Robson', 'email' => 'admin@admin.com'];
-            }else{
-                echo "Email ou senha incorretos.";
-            }
-    }else{
-        echo "<h3>A página deve ser carregada por POST</h3>";
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('actions/classes/Usuario.class.php');
+    $u = new Usuario;
+    $u->email = $_POST['email'];
+    $u->senha = $_POST['senha'];
 
-?>
+    $resultado = $u->Logar();
+    if (count($resultado) == 1) {
+        echo 'Acertou miseravi';
+    } else {
+        echo 'senha incorreta!';
+    }
+    print_r($resultado);
+} else {
+    echo "<h3>A página deve ser carregada por POST</h3>";
+}
