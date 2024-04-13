@@ -15,12 +15,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $contato->nome = strip_tags($_POST['nome']);
     $contato->email = strip_tags($_POST['email']);
     $contato->telefone = strip_tags($_POST['telefone']);
-    if($contato->Cadastrar() == 1){
-        // Redirecionar de volta ao index.php:
-        header('Location: ../index.php?sucesso=0');
+    
+    if(strlen($contato->nome)>1 && strlen($contato->email)>5 &&
+    strlen($contato->telefone)>=8 && filter_var($contato->email, FILTER_VALIDATE_EMAIL)){
+
+        if($contato->Cadastrar() == 1){
+            // Redirecionar de volta ao index.php:
+            header('Location: ../index.php?sucesso=0');
+        }else{
+            header('Location: ../index.php?falha=0');
+        }
+
     }else{
         header('Location: ../index.php?falha=0');
     }
+    
+    
 
 }else{
     echo 'Erro. A página deve ser carregada por POST';
