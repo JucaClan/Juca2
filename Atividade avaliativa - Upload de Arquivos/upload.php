@@ -19,7 +19,7 @@ move_uploaded_file( $arquivo_tmp, $destino  );
     echo 'Tipo: ' , $_FILES[ 'arquivo' ][ 'type' ]  ,'<br>';
     echo 'tamanho: ' , $_FILES[ 'arquivo' ][ 'size' ]  ,'<br>';
 
-    header "<img
+    HEAD "<img
     src="$destino"
     alt="imagem recebida" />
 ?>
