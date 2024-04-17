@@ -14,25 +14,8 @@ $extensoesValidas = array("jpeg", "jpg", "png","gif");
 
 $extensaoImagem = strtolower(pathinfo($destino,PATHINFO_EXTENSION));
  
-/*$valida = false;
-
-foreach($extensoesValidas as $extensoes) {
-    if (($extensaoImagem === $extensoes ))
-        $valida = true;
-}*/
-
-/*if ($valida) {
-    move_uploaded_file($arquivo_tmp, $destino);
-    echo 'Nome: ' , $_FILES[ 'arquivo' ][ 'name' ] ,'<br>' ;
-    echo 'Tipo: ' , $_FILES[ 'arquivo' ][ 'type' ]  ,'<br>';
-    echo 'tamanho: ' , $_FILES[ 'arquivo' ][ 'size' ]  ,'<br>';
-    echo 'Extensão: ' , $extensaoImagem ,'<br>';
-    echo '<br>';
-    echo '<img src="' . $destino . '" width="250px">';
-
-}*/ 
-
-if(in_array($extensaoImagem, $extensoesValidas)) { // Melhor solucao
+if(in_array($extensaoImagem, $extensoesValidas)) { 
+    echo "<b>",$resultado[0],"</b>", "<br>";    
     move_uploaded_file($arquivo_tmp, $destino);
     echo 'Nome: ' , $_FILES[ 'arquivo' ][ 'name' ] ,'<br>' ;
     echo 'Tipo: ' , $_FILES[ 'arquivo' ][ 'type' ]  ,'<br>';
@@ -41,8 +24,9 @@ if(in_array($extensaoImagem, $extensoesValidas)) { // Melhor solucao
     echo '<br>';
     echo '<img src="' . $destino . '" width="250px">';
 }
+else {
+    echo "<b>", $resultado[1], "<br>", 'Verifique o arquivo!', "</b>";   
+}
+
 
 ?>
-   
-    
-
