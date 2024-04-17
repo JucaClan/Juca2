@@ -44,7 +44,7 @@
         </div>
         <div class="row justify-content-center mt-3">
             <div class="col-4 conteudo">
-                <form id="formLogin"  action="actions/classes/cadastrar_contato.php" method="post">
+                <form id="formLogin"  action="actions/validaLogin.php" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">

@@ -29,13 +29,13 @@ public function Logar() {
     $comando = $banco->prepare($sql);
     $hash = hash("sha256", $this->senha);
     $comando->execute([$this->email, $hash]);
-
     $arr_resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
     Banco::desconectar();
 
     return $arr_resultado;
 }
 
+}
 
 
  ?>

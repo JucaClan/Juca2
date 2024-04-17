@@ -23,9 +23,9 @@
     <div class="container mt-5">
         <h1 class="text-center mb-4">Gerenciamento de Produtos</h1>
         <div class="row mb-3">
-            <div class="col d-flex justify-content-end">
+            <div class="col d-flex justify-content-end" >
                 <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#modalCadastro"><i class="bi bi-plus-circle"></i> Cadastrar Produto</button>
-                <a class="btn btn-danger mx-1 text-white" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                <a class="btn btn-danger mx-1 text-white" href="actions/sair.php" ><i class="bi bi-box-arrow-right"></i> Sair</a>
             </div>
         </div>
         <table class="table table-striped table-hover">
