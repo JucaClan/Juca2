@@ -72,7 +72,7 @@ $lista_produtos = $p->ListarTudo();
                         <td><?= $produto['id_categoria']; ?></td>
                         <td><?= $produto['estoque']; ?></td>
                         <td><?= $produto['preco']; ?></td>
-                        <td><a href="#" data-toggle="modal" data-target="#modaleditar" data-nome=<?= $produto['nome']; ?>
+                        <td><a href="#" data-toggle="modal" data-target="#editar" data-nome=<?= $produto['nome']; ?>
                                 data-foto=<img src="fotos/<?= $produto['foto']; ?>" data-descricao=<?= $produto['descricao']; ?> data-categoria=<?= $produto['id_categoria']; ?> data-estoque=<?= $produto['estoque']; ?>
                                 data-preco=<?= $produto['preco']; ?>>Editar</a>
                             /<a href="#"> Excluir</a> </td>
@@ -185,12 +185,12 @@ $lista_produtos = $p->ListarTudo();
 
     <!-- Modal editar -->
     <!-- Modal -->
-    <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal Editar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -238,7 +238,7 @@ $lista_produtos = $p->ListarTudo();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
-        $('#modaleditar').on('show.bs.modal', function (event) {
+        $('#editar').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
 
             var nome = button.data('nome')
