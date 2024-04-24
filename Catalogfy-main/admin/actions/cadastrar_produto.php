@@ -41,7 +41,7 @@
                 }
                 
 
-                //print_r($_FILES['foto']);
+                
             }else{
                 // Cadastro sem foto
                 if($p->CadastrarSemFoto() == 1){
