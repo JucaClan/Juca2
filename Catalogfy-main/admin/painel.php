@@ -72,10 +72,10 @@ $lista_produtos = $p->ListarTudo();
                         <td><?= $produto['id_categoria']; ?></td>
                         <td><?= $produto['estoque']; ?></td>
                         <td><?= $produto['preco']; ?></td>
-                        <td><a href="#" data-toggle="modal" data-target="#editar" data-nome=<?= $produto['nome']; ?>
+                        <td><a href="#" data-toggle="modal" data-target="#editar" data-id=<?= $produto['id']; ?> data-nome=<?= $produto['nome']; ?>
                                 data-foto=<img src="fotos/<?= $produto['foto']; ?>" data-descricao=<?= $produto['descricao']; ?> data-categoria=<?= $produto['id_categoria']; ?> data-estoque=<?= $produto['estoque']; ?>
                                 data-preco=<?= $produto['preco']; ?>>Editar</a>
-                            /<a href="#"> Excluir</a> </td>
+                            /<a href="actions/apagar_produto.php?id=<?= $produto['id']; ?>"> Excluir</a> </td>
                     </tr>
                 <?php } ?>
 
@@ -189,47 +189,54 @@ $lista_produtos = $p->ListarTudo();
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        <label for="NomeProduto">Nome</label>
-                        <input class="form-control nome" type="text" placeholder="Default input" value="">
-                    </p>
-                    <p>
-                        <label for="fotoProduto">Foto</label>
-                        <input type="file" class="form-control-file" id="fotoProduto" name="foto">
-                    </p>
-                    <p>
-                        <label for="DescricaoProduto">Descrição</label>
-                        <input class="form-control descricao" type="text" placeholder="Default input">
-                    </p>
-                    <p>
-                        <label for="categoriaProduto">Categoria</label>
-                        <select class="form-control" id="categoriaProduto" name="id_categoria">
+                <form action="actions/editar_produto.php" method="POST" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                            <?php foreach ($lista_categorias as $cat) { ?>
-                                <option value="<?= $cat['id']; ?>"><?= $cat['nome']; ?></option>
-                            <?php } ?>
-                    </p>
-                    <p>
-                        <label for="EstoqueProduto">Estoque</label>
-                        <input class="form-control estoque" type="text" placeholder="Default input">
-                    </p>
-                    <p>
-                        <label for="PrecoProduto">Preco</label>
-                        <input class="form-control preco" type="text" placeholder="Default input">
-                    </p>
+                        <p>
+                            <label for="NomeProduto">Nome</label>
+                            <input class="form-control nome" type="text" placeholder="Default input" id="nomeProduto" name="nome">
+                        </p>
+                        <p>
+                            <label for="fotoProduto">Foto</label>
+                            <input type="file" class="form-control-file" id="fotoProduto" name="foto">
+                        </p>
+                        <p>
+                            <label for="DescricaoProduto">Descrição</label>
+                            <input class="form-control descricao" type="text" placeholder="Default input"
+                                id="descricaoProduto" name="descricao">
+                        </p>
+                        <p>
+                            <label for="categoriaProduto">Categoria</label>
+                            <select class="form-control" id="categoriaProduto" name="id_categoria">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                                <?php foreach ($lista_categorias as $cat) { ?>
+                                    <option value="<?= $cat['id']; ?>"><?= $cat['nome']; ?></option>
+
+                                <?php } ?>
+
+                            </select> <br>
+                        </p>
+                        <p>
+                            <label for="EstoqueProduto">Estoque</label>
+                            <input class="form-control estoque" type="text" placeholder="Default input" id="estoqueProduto" name="estoque">
+                        </p>
+                        <p>
+                            <label for="PrecoProduto">Preco</label>
+                            <input class="form-control preco" type="text" placeholder="Default input" id="precoProduto" name="preco">
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -240,16 +247,17 @@ $lista_produtos = $p->ListarTudo();
     <script>
         $('#editar').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
-
+            var id = button.data('id')
             var nome = button.data('nome')
             var foto = button.data('foto')
             var descricao = button.data('descricao')
             var categoria = button.data('categoria')
             var estoque = button.data('estoque')
             var preco = button.data('preco')
-
-
+            
             var modal = $(this)
+
+            modal.find('.id').val(id)
             modal.find('.nome').val(nome)
             modal.find('.foto').val(foto)
             modal.find('.descricao').val(descricao)
