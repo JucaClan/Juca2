@@ -65,8 +65,9 @@ $lista_produtos = $p->ListarTudo();
 
                 <?php foreach ($lista_produtos as $produto) { ?>
                     <tr>
-                        <td><?= $produto['id']; ?></td>
+                        
                         <td><img src="fotos/<?= $produto['foto']; ?>" alt="Foto" width="250px">'</td>
+                        <td><?= $produto['id']; ?></td>
                         <td><?= $produto['nome']; ?></td>
                         <td><?= $produto['descricao']; ?></td>
                         <td><?= $produto['id_categoria']; ?></td>
@@ -78,7 +79,6 @@ $lista_produtos = $p->ListarTudo();
                             /<a href="actions/apagar_produto.php?id=<?= $produto['id']; ?>"> Excluir</a> </td>
                     </tr>
                 <?php } ?>
-
 
             </tbody>
         </table>
@@ -197,7 +197,6 @@ $lista_produtos = $p->ListarTudo();
                         </button>
                     </div>
                     <div class="modal-body">
-
                         <p>
                             <label for="NomeProduto">Nome</label>
                             <input class="form-control nome" type="text" placeholder="Default input" id="nomeProduto" name="nome">
@@ -236,6 +235,7 @@ $lista_produtos = $p->ListarTudo();
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Editar</button>
                     </div>
+                    <input type="hidden" id="id" name="id" value="<?= $produto['id'] ?>">
                 </form>
             </div>
         </div>
